@@ -20,12 +20,9 @@ for iter = 1:num_iters
     % y = vector: m x 1 ( m = # training samples )
     error = h - y;
     
-    for iter2 = 1:size(theta(:, 1))
-        temp = X(:, iter2);
-        tempMult = error .* temp;
-        tempSum = sum(tempMult);
-        sumOverM = (1/m) * sum((error .* X(:, iter2)));
-        theta(iter2) = theta(iter2) - (alpha * sumOverM)';
+    for i = 1:size(theta(:, 1))
+        sumOverM = (1/m) * sum((error .* X(:, i)));
+        theta(i) = theta(i) - (alpha * sumOverM)';
     end
 
     % ============================================================

@@ -72,12 +72,6 @@ X = [ones(m, 1) X];
 %
 %               Finally, you should complete the code at the end
 %               to predict the price of a 1650 sq-ft, 3 br house.
-%
-% Hint: By using the 'hold on' command, you can plot multiple
-%       graphs on the same figure.
-%
-% Hint: At prediction, make sure you do the same feature normalization.
-%
 
 fprintf('Running gradient descent ...\n');
 
@@ -101,13 +95,6 @@ for iter = 1:alphaSize
     costFunctions = [costFunctions J_history];
     thetas = [thetas theta];
 
-    % Plot the convergence graph
-    %figure;
-    %plot(1:numel(J_history), J_history, colors(iter), 'LineWidth', 2);
-    %hold on;
-    %xlabel('Number of iterations');
-    %ylabel('Cost J');
-
     % Display gradient descent's result
     fprintf('Theta computed from gradient descent with alpha %f: \n', currentAlpha);
     fprintf(' %f \n', theta);
@@ -122,7 +109,6 @@ for iter = 1:size(costFunctions,2)
     xlabel('Number of iterations');
     ylabel('Cost J');
 end
-%legend(alphas);
 
 % Init Theta and Run Gradient Descent 
 theta = zeros(3, 1);
@@ -144,11 +130,8 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-featureVecNotNorm = [1650 3];
-featureVec = (featureVecNotNorm - mu) ./ sigma;
-featureVec = [ 1 featureVec ];
-priceVal = featureVec * theta;
-price = priceVal; % You should change this
+featureVec = [ 1 (([1650 3] - mu) ./ sigma) ];
+price = featureVec * theta; % You should change this
 
 
 % ============================================================
@@ -202,7 +185,7 @@ fprintf('\n');
 % Estimate the price of a 1650 sq-ft, 3 br house
 % ====================== YOUR CODE HERE ======================
 xFeature = [1 1650 3];
-price = xFeature * theta; % You should change this
+price = xFeature * theta;
 
 
 % ============================================================
