@@ -22,7 +22,11 @@ grad = zeros(size(theta));
 h_theta = sigmoid(X * theta);
 J = (1/m) * sum((-y .* log(h_theta)) - (1-y) .* log(1-h_theta));
 for iter = 1:size(grad)
-    grad(iter) = (1/m) * sum((h_theta-y) .* X(:, iter));
+    test = X(:, 1);
+    test2 = h_theta-y;
+    test3 = test .* test2;
+    test4 = (1/m) * sum(test3);
+    grad = (1/m) * sum((h-y) .* X(:, 1));
 end
 
 

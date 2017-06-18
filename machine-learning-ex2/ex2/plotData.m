@@ -11,7 +11,18 @@ figure; hold on;
 %               2D plot, using the option 'k+' for the positive
 %               examples and 'ko' for the negative examples.
 %
+positives = []; negatives = [];
 
+for i = 1:size(y)
+    if y(i) == 1
+        positives = [positives; X(i,:)];
+    else
+        negatives = [negatives; X(i,:)];
+    end
+end
+
+plot(positives(:,1), positives(:,2), 'k+', 'LineWidth', 2, 'MarkerSize', 7);
+plot(negatives(:,1), negatives(:,2), 'ko', 'MarkerFaceColor', 'y', 'MarkerSize', 7);
 
 
 
